@@ -1,28 +1,47 @@
-<!DOCTYPE>
+<!DOCTYPE html>
 <html>
-<head>
-	<title>select tag</title>
-</head>
-<body>
-	<form>
-		<label>Select your fav cricketer</label>
-		<select id="cricketer">
-			<option> MS Dhoni</option>
-			<option> AB Devilliers</option>
-			<option> Rohith Sarma</option>
-			<option> Kohli</option>
-			<option> Warner</option>
-			<option> Kane Williamson</option>
-		</select>
-	</form>
-	<button onclick="submit()">Submit</button><p id="result"></p>
-	<p>Is your favorite cricketer</p>
-	<script>
-		function submit()
-		{
-			var c=document.getElementById('cricketer').value;
-			document.getElementById('result').innerHTML=c;
-		}
-	</script>
-</body>
+	<head>
+		<title>Tech Support Table</title>
+	</head>
+	<body>
+		<table border="1">
+			<tr>
+				
+				<th>Email ID</th>
+				
+				
+			</tr>
+		<?php
+			
+			// Server Credentials
+			$server="localhost:3306";
+			$username="Silpa";
+			$password="123456";
+			$dbname="web-development";
+
+			// Connecting with Server
+			$conn=mysqli_connect($server,$username,$password,$dbname);	
+			if(!$conn) {
+				echo 'Connection Failure';
+			}
+
+			// Prepare an SQL Injection
+			$sql="SELECT * FROM contact_form";
+
+			// query this injection
+			$data=mysqli_query($conn,$sql);
+			if(mysqli_num_rows($data)>0) {
+				while($row=mysqli_fetch_assoc($data)) {
+		?>
+					<tr>
+						
+						<td><?php echo $row['mail'];?></td>
+						
+					</tr>
+		<?php			
+				}
+			}
+		?>
+	</table>
+	</body>
 </html>
